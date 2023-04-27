@@ -1,12 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <title>Find & Foster</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    
+  <h1>Find Available Pets</h1>
+  <form id="petForm">
+    <label for="currentLocation">Location:</label>
+    <input type="text" id="currentLocation" class="currentLocation"><br>
+<label for="petType">Type of pet:</label>
+<select id="petType">
+  <option value="dog">Dog</option>
+  <option value="cat">Cat</option>
+</select><br>
+
+<label for="petSex">Sex:</label>
+<select id="petSex">
+  <option value="M">Male</option>
+  <option value="F">Female</option>
+</select><br>
+
+<input type="submit" value="Find Pets">
+  </form>
+  <div id="availablePets"></div>
+	<script src="./assets/js/script.js"></script>
 </body>
 </html>
