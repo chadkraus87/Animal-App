@@ -13,20 +13,23 @@ const pets = {
       const petSex = $("select#petSex option:checked").val();
       console.log("click");
       pets.petsCall(userLocation, petType, petSex);
+      $(".currentLocation").val("");
     });
   },
 
   async fetchToken() {
-    const response = await fetch('https://api.petfinder.com/v2/oauth2/token', {
-      method: 'POST',
+    const response = await fetch("https://api.petfinder.com/v2/oauth2/token", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: `grant_type=client_credentials&client_id=${apiKey}&client_secret=${apiSecret}`
+      body: `grant_type=client_credentials&client_id=${apiKey}&client_secret=${apiSecret}`,
     });
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch access token. Status: ${response.status}`);
+      throw new Error(
+        `Failed to fetch access token. Status: ${response.status}`
+      );
     }
 
     const data = await response.json();
@@ -38,11 +41,14 @@ const pets = {
 
     try {
       const apiToken = await pets.fetchToken();
-      const response = await fetch(`${petUrl}?location=${userLocation}&type=${petType}&gender=${petSex}&status=adoptable&age=senior&limit=10`, {
-        headers: {
-          'Authorization': `Bearer ${apiToken}`
+      const response = await fetch(
+        `${petUrl}?location=${userLocation}&type=${petType}&gender=${petSex}&status=adoptable&age=senior&limit=10`,
+        {
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          },
         }
-      });
+      );
 
       if (!response.ok) {
         throw new Error(`Failed to fetch pets. Status: ${response.status}`);
@@ -55,8 +61,8 @@ const pets = {
       for (let i = 0; i < petResults.length; ++i) {
         const petName = petResults[i].name;
         const petPhoto = petResults[i].photos.length
-          ? petResults[i].photos[0].small
-          : "https://via.placeholder.com/150";
+          ? petResults[i].photos[0].medium
+          : "https://via.placeholder.com/300";
 
         console.log(petName);
         console.log(petPhoto);
@@ -66,50 +72,54 @@ const pets = {
     } catch (error) {
       console.log(error);
     }
-  }
+  },
 };
 
 $(document).ready(() => {
   pets.form();
 });
 
-const YELP_API_KEY = 'LqeEnmGplttcwXf6MHGR4LpPvlKsradgguL9zoDJ2_EOZsxdnx90HASmIG97NMTVZth-jpjbNh5JEW9tA8B_3qAbEVq9Nrt_0VzEeorkT-dhi4GCtrMK5r9jhypHZHYx';
+const YELP_API_KEY =
+  "LqeEnmGplttcwXf6MHGR4LpPvlKsradgguL9zoDJ2_EOZsxdnx90HASmIG97NMTVZth-jpjbNh5JEW9tA8B_3qAbEVq9Nrt_0VzEeorkT-dhi4GCtrMK5r9jhypHZHYx";
 
 const yelp = {
   async search(zipCode) {
-    const corsAnywhereUrl = 'https://cors-anywhere.herokuapp.com/';
+    const corsAnywhereUrl = "https://cors-anywhere.herokuapp.com/";
     const yelpUrl = `https://api.yelp.com/v3/businesses/search?location=${zipCode}&radius=8000&categories=restaurants,bars&attributes=good_for_animals`;
 
     try {
       const response = await fetch(corsAnywhereUrl + yelpUrl, {
         headers: {
-          'Authorization': `Bearer ${YELP_API_KEY}`,
-          'Content-Type': 'application/json'
+          Authorization: `Bearer ${YELP_API_KEY}`,
+          "Content-Type": "application/json",
         },
       });
 
       if (!response.ok) {
-        throw new Error(`Failed to fetch businesses. Status: ${response.status}`);
+        throw new Error(
+          `Failed to fetch businesses. Status: ${response.status}`
+        );
       }
 
       const data = await response.json();
       const businesses = data.businesses;
 
-      let html = '<ul>';
+      let html = "<ul>";
       for (let i = 0; i < businesses.length; i++) {
         const name = businesses[i].name;
         const rating = businesses[i].rating;
         const reviewCount = businesses[i].review_count;
-        const address = businesses[i].location.display_address.join(', ');
+        const address = businesses[i].location.display_address.join(", ");
         html += `<li><b>${name}</b> (${rating} stars, ${reviewCount} reviews)<br>${address}</li>`;
       }
-      html += '</ul>';
+      html += "</ul>";
 
       $("#restaurantResults").html(html);
+      $("#zipCode").val("");
     } catch (error) {
       console.log(error);
     }
-  }
+  },
 };
 
 $(document).ready(() => {
@@ -121,12 +131,3 @@ $(document).ready(() => {
     yelp.search(zipCode);
   });
 });
-
-
-
-
-
-
-
-
-
