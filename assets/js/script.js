@@ -72,3 +72,61 @@ const pets = {
 $(document).ready(() => {
   pets.form();
 });
+
+const YELP_API_KEY = 'LqeEnmGplttcwXf6MHGR4LpPvlKsradgguL9zoDJ2_EOZsxdnx90HASmIG97NMTVZth-jpjbNh5JEW9tA8B_3qAbEVq9Nrt_0VzEeorkT-dhi4GCtrMK5r9jhypHZHYx';
+
+const yelp = {
+  async search(zipCode) {
+    const corsAnywhereUrl = 'https://cors-anywhere.herokuapp.com/';
+    const yelpUrl = `https://api.yelp.com/v3/businesses/search?location=${zipCode}&radius=8000&categories=restaurants,bars&attributes=good_for_animals`;
+
+    try {
+      const response = await fetch(corsAnywhereUrl + yelpUrl, {
+        headers: {
+          'Authorization': `Bearer ${YELP_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch businesses. Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const businesses = data.businesses;
+
+      let html = '<ul>';
+      for (let i = 0; i < businesses.length; i++) {
+        const name = businesses[i].name;
+        const rating = businesses[i].rating;
+        const reviewCount = businesses[i].review_count;
+        const address = businesses[i].location.display_address.join(', ');
+        html += `<li><b>${name}</b> (${rating} stars, ${reviewCount} reviews)<br>${address}</li>`;
+      }
+      html += '</ul>';
+
+      $("#restaurantResults").html(html);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+};
+
+$(document).ready(() => {
+  pets.form();
+
+  $("#restaurantForm").on("submit", (e) => {
+    e.preventDefault();
+    const zipCode = $("#zipCode").val();
+    yelp.search(zipCode);
+  });
+});
+
+
+
+
+
+
+
+
+
