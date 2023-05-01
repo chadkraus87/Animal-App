@@ -42,7 +42,7 @@ const pets = {
     try {
       const apiToken = await pets.fetchToken();
       const response = await fetch(
-        `${petUrl}?location=${userLocation}&type=${petType}&gender=${petSex}&status=adoptable&age=senior&limit=10`,
+        `${petUrl}?location=${userLocation}&type=${petType}&gender=${petSex}&status=adoptable&limit=10`,
         {
           headers: {
             Authorization: `Bearer ${apiToken}`,
@@ -60,14 +60,25 @@ const pets = {
       availablePets.empty();
       for (let i = 0; i < petResults.length; ++i) {
         const petName = petResults[i].name;
+        const petAge = petResults[i].age;
+        const petBreed = petResults[i].breeds.primary;
+        const petSpayedNeutered = petResults[i].attributes.spayed_neutered;
         const petPhoto = petResults[i].photos.length
           ? petResults[i].photos[0].medium
           : "https://via.placeholder.com/300";
+        const petUrl = petResults[i].url;
 
         console.log(petName);
+        console.log(petAge);
         console.log(petPhoto);
-        availablePets.append(`<p>${petName}</p>`);
-        availablePets.append(`<div><img src="${petPhoto}"></div>`);
+        console.log(petBreed);
+        console.log(petSpayedNeutered);
+        availablePets.append(`
+          <a href="${petUrl}" target="_blank">
+            <p>Name: ${petName} | Age: ${petAge} | Breed: ${petBreed} | Spayed/Neutered: ${petSpayedNeutered}</p>
+            <div><img src="${petPhoto}"></div>
+          </a>
+        `);
       }
     } catch (error) {
       console.log(error);
@@ -94,31 +105,32 @@ const yelp = {
           "Content-Type": "application/json",
         },
       });
-
+    
       if (!response.ok) {
         throw new Error(
           `Failed to fetch businesses. Status: ${response.status}`
         );
       }
-
+    
       const data = await response.json();
       const businesses = data.businesses;
-
+    
       let html = "<ul>";
       for (let i = 0; i < businesses.length; i++) {
         const name = businesses[i].name;
         const rating = businesses[i].rating;
         const reviewCount = businesses[i].review_count;
         const address = businesses[i].location.display_address.join(", ");
-        html += `<li><b>${name}</b> (${rating} stars, ${reviewCount} reviews)<br>${address}</li>`;
+        const yelpUrl = businesses[i].url;
+        html += `<li><b><a href="${yelpUrl}" target="_blank">${name}</a></b> (${rating} stars, ${reviewCount} reviews)<br>${address}</li>`;
       }
       html += "</ul>";
-
+    
       $("#restaurantResults").html(html);
       $("#zipCode").val("");
     } catch (error) {
       console.log(error);
-    }
+    }    
   },
 };
 

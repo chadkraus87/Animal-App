@@ -1,0 +1,108 @@
+body {
+  background-attachment: fixed;
+}
+
+* {
+  color: #fff;
+  border-color: #E90C5C;
+}
+
+body {
+  font-family: 'Acme', sans-serif;
+  font-size: 24px;
+  background-image: url(../images/dogsonleash.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.page-title {
+  color: #E90C5C;
+  background-color: white;
+  display: block;
+  font-size: 56px;
+  box-sizing: border-box;
+}
+
+h1, h2, h4 {
+  text-align: center;
+  color: #E90C5C;
+  background-color: white;
+  display: block;
+  box-sizing: border-box;
+}
+
+
+h1 span, h2 span, h4 span {
+  padding: 5px;
+  display: inline-block;
+}
+
+form {
+  margin: 20px 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+input[type="text"],
+select {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  background-color: #f0f0f0;
+}
+
+select {
+  margin-top: 10px;
+}
+
+#petType,
+#petSex,
+#zipCode,
+#currentLocation {
+  color: black;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #E90C5C;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#availablePets {
+  margin-top: 20px;
+}
+
+#restaurantForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#restaurantResults {
+  margin-top: 20px;
+}
+
+#restaurantResults ul {
+  list-style: none;
+  padding: 0;
+}
+
+#restaurantResults li {
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
