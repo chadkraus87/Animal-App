@@ -12,26 +12,7 @@ body {
   border-color: #e90c5c;
 }
 
-h1 {
-  text-align: center;
-  color: #fff;
-  background-color: #e90c5c;
-  display: block;
-  font-size: 64px;
-  box-sizing: border-box;
-  border-radius: 30%;
-}
-
-h2 {
-  text-align: center;
-  color: #fff;
-  background-color: #e90c5c;
-  display: block;
-  box-sizing: border-box;
-  border-radius: 30%;
-}
-
-h3 {
+h1, h2, h3 {
   text-align: center;
   color: #fff;
   background-color: #e90c5c;
@@ -64,7 +45,7 @@ input[type="text"], select {
   max-width: 400px;
   box-sizing: border-box;
   background-color: #f0f0f0;
-  color: black; /* added to overwrite global * color */
+  color: black;
 }
 
 select {
@@ -107,4 +88,60 @@ button[type="submit"] {
   padding: 10px;
   border-radius: 5px;
   background-color: rgb(97, 98, 98);
+}
+
+
+/* Media queries*/
+@media screen and (max-width: 767px) {
+  h1 {
+    font-size: 48px;
+  }
+  
+  h2 {
+    font-size: 32px;
+  }
+  
+  h3 {
+    font-size: 24px;
+  }
+  
+  button[type="submit"] {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  h1 {
+    font-size: 56px;
+  }
+  
+  h2 {
+    font-size: 40px;
+  }
+  
+  h3 {
+    font-size: 32px;
+  }
+  
+  button[type="submit"] {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  h1 {
+    font-size: 64px;
+  }
+  
+  h2 {
+    font-size: 48px;
+  }
+  
+  h3 {
+    font-size: 36px;
+  }
+  
+  button[type="submit"] {
+    font-size: 18px;
+  }
 }
