@@ -1,38 +1,46 @@
 body {
   background-attachment: fixed;
-}
-
-* {
-  color: #fff;
-  border-color: #E90C5C;
-}
-
-body {
-  font-family: 'Acme', sans-serif;
+  font-family: "Acme", sans-serif;
   font-size: 24px;
   background-image: url(../images/dogsonleash.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.page-title {
-  color: #E90C5C;
-  background-color: white;
-  display: block;
-  font-size: 56px;
-  box-sizing: border-box;
+* {
+  color: #fff;
+  border-color: #e90c5c;
 }
 
-h1, h2, h4 {
+h1 {
   text-align: center;
-  color: #E90C5C;
-  background-color: white;
+  color: #fff;
+  background-color: #e90c5c;
   display: block;
+  font-size: 64px;
   box-sizing: border-box;
+  border-radius: 30%;
 }
 
+h2 {
+  text-align: center;
+  color: #fff;
+  background-color: #e90c5c;
+  display: block;
+  box-sizing: border-box;
+  border-radius: 30%;
+}
 
-h1 span, h2 span, h4 span {
+h3 {
+  text-align: center;
+  color: #fff;
+  background-color: #e90c5c;
+  display: block;
+  box-sizing: border-box;
+  border-radius: 30%;
+}
+
+h1 span, h2 span, h3 span, h4 span {
   padding: 5px;
   display: inline-block;
 }
@@ -47,8 +55,7 @@ label {
   text-align: center;
 }
 
-input[type="text"],
-select {
+input[type="text"], select {
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -57,22 +64,16 @@ select {
   max-width: 400px;
   box-sizing: border-box;
   background-color: #f0f0f0;
+  color: black; /* added to overwrite global * color */
 }
 
 select {
   margin-top: 10px;
 }
 
-#petType,
-#petSex,
-#zipCode,
-#currentLocation {
-  color: black;
-}
-
 button[type="submit"] {
   padding: 10px 20px;
-  background-color: #E90C5C;
+  background-color: #e90c5c;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -105,4 +106,5 @@ button[type="submit"] {
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 5px;
+  background-color: rgb(97, 98, 98);
 }

@@ -5,15 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
   <div class="pure-g">
     <div class="pure-u-1-2">
-      <h1 class="page-title">Pawsitively Local</h1>
-      <h2>Find your new friend today!</h2>
+      <div class="box">
+        <h1>Pawsitively Local</h1>
+        <h3>Find your new friend today!</h3>
+      </div>
       <form id="petForm" class="pure-form pure-form-aligned">
         <fieldset>
           <div class="pure-control-group">
@@ -43,14 +45,16 @@
       <div id="petResults"></div>
     </div>
     <div class="pure-u-1-2">
-      <h2>Pet-Friendly Restaurants & Bars</h2>
-      <h4>The best places to take your pal around town.</h4>
-      <form id="restaurantForm" class="pure-form">
-        <fieldset>
-          <div class="pure-control-group">
-            <label for="zipCode">Enter Zip Code:</label>
-            <input type="text" id="zipCode" class="zipCode" placeholder="Enter your zip code">
-          </div>
+      <div class="box">
+        <h2>Pet-Friendly Restaurants & Bars
+          <br>
+          The best places to take your pal around town!</h2>
+        <form id="restaurantForm" class="pure-form">
+          <fieldset>
+            <div class="pure-control-group">
+              <label for="zipCode">Zip Code:</label>
+              <input type="text" id="zipCode" class="zipCode" placeholder="Enter your zip code">
+            </div>
           <div class="pure-controls">
             <button type="submit" id="searchButton" class="pure-button pure-button-primary">Search</button>
           </div>
