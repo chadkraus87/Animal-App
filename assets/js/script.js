@@ -90,8 +90,7 @@ $(document).ready(() => {
   pets.form();
 });
 
-const YELP_API_KEY =
-  "LqeEnmGplttcwXf6MHGR4LpPvlKsradgguL9zoDJ2_EOZsxdnx90HASmIG97NMTVZth-jpjbNh5JEW9tA8B_3qAbEVq9Nrt_0VzEeorkT-dhi4GCtrMK5r9jhypHZHYx";
+const YELP_API_KEY = "LqeEnmGplttcwXf6MHGR4LpPvlKsradgguL9zoDJ2_EOZsxdnx90HASmIG97NMTVZth-jpjbNh5JEW9tA8B_3qAbEVq9Nrt_0VzEeorkT-dhi4GCtrMK5r9jhypHZHYx";
 
 const yelp = {
   async search(zipCode) {
@@ -105,16 +104,16 @@ const yelp = {
           "Content-Type": "application/json",
         },
       });
-    
+
       if (!response.ok) {
         throw new Error(
           `Failed to fetch businesses. Status: ${response.status}`
         );
       }
-    
+
       const data = await response.json();
       const businesses = data.businesses;
-    
+
       let html = "<ul>";
       for (let i = 0; i < businesses.length; i++) {
         const name = businesses[i].name;
@@ -125,17 +124,39 @@ const yelp = {
         html += `<li><b><a href="${yelpUrl}" target="_blank">${name}</a></b> (${rating} stars, ${reviewCount} reviews)<br>${address}</li>`;
       }
       html += "</ul>";
-    
+
       $("#restaurantResults").html(html);
       $("#zipCode").val("");
+
+      // Store the searched zip code in local storage
+      const previousZipCodes = JSON.parse(localStorage.getItem("previousZipCodes")) || [];
+      if (!previousZipCodes.includes(zipCode)) {
+        previousZipCodes.push(zipCode);
+      }
+      localStorage.setItem("previousZipCodes", JSON.stringify(previousZipCodes));
+
+      // Update list of previously searched zip codes
+      const updatedPreviousZipCodes = JSON.parse(localStorage.getItem("previousZipCodes"));
+      const updatedHtml = updatedPreviousZipCodes.map(zipCode => `<li><a href="#" class="previous-zip-code">${zipCode}</a></li>`).join("");
+      $("#previousZipCodes").html(updatedHtml);
     } catch (error) {
       console.log(error);
-    }    
+    }
   },
 };
 
 $(document).ready(() => {
-  pets.form();
+  // Load previously searched zip codes from local storage
+  const previousZipCodes = JSON.parse(localStorage.getItem("previousZipCodes")) || [];
+  const html = previousZipCodes.map(zipCode => `<li><a href="#" class="previous-zip-code">${zipCode}</a></li>`).join("");
+  $("#previousZipCodes").html(html);
+
+  // Handle click on previously searched zip code link
+  $("#previousZipCodes").on("click", ".previous-zip-code", function(e) {
+    e.preventDefault();
+    const zipCode = $(this).text();
+    yelp.search(zipCode);
+  });
 
   $("#restaurantForm").on("submit", (e) => {
     e.preventDefault();
