@@ -25,8 +25,6 @@ From the right side of the website, the user has the ability to search for pet-f
 
 [PetFinder API](https://www.petfinder.com/developers/v2/docs/)
 
-[Day.JS](https://day.js.org/)
-
 [SpectralOps - The Complete Guide to the Yelp API](https://spectralops.io/blog/yelp-api-guide/)
 
 [Yelp API Reference](https://docs.developer.yelp.com/reference/v3_business_search)
