@@ -61,6 +61,7 @@ const pets = {
       for (let i = 0; i < petResults.length; ++i) {
         const petName = petResults[i].name;
         const petAge = petResults[i].age;
+        const petSize = petResults[i].size;
         const petBreed = petResults[i].breeds.primary;
         const petSpayedNeutered = petResults[i].attributes.spayed_neutered;
         const petPhoto = petResults[i].photos.length
@@ -70,12 +71,13 @@ const pets = {
 
         console.log(petName);
         console.log(petAge);
+        console.log(petSize);
         console.log(petPhoto);
         console.log(petBreed);
         console.log(petSpayedNeutered);
         availablePets.append(`
           <a href="${petUrl}" target="_blank">
-            <p>Name: ${petName} | Age: ${petAge} | Breed: ${petBreed} | Spayed/Neutered: ${petSpayedNeutered}</p>
+            <p>Name: ${petName} | Age: ${petAge} | Size: ${petSize} | Breed: ${petBreed} | Spayed/Neutered: ${petSpayedNeutered}</p>
             <div><img src="${petPhoto}"></div>
           </a>
         `);
