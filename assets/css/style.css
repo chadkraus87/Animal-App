@@ -81,8 +81,30 @@ button[type="submit"] {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
+.pure-controls {
+  margin-bottom: 0px;
+}
+
 #availablePets {
   margin-top: 20px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  text-align: center;
+}
+
+#availablePets img {
+  border-radius: 50%;
+  justify-content: center;
+}
+
+#previousSearches,
+#restaurantSearch {
+  float: right;
+}
+
+#previousZipCodes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 #restaurantResults {
