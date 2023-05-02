@@ -17,6 +17,7 @@ const pets = {
     });
   },
 
+  // Call to request new authorization token from PetFinder.
   async fetchToken() {
     const response = await fetch("https://api.petfinder.com/v2/oauth2/token", {
       method: "POST",
@@ -92,8 +93,10 @@ $(document).ready(() => {
   pets.form();
 });
 
+// Start Yelp API call.
 const YELP_API_KEY = "LqeEnmGplttcwXf6MHGR4LpPvlKsradgguL9zoDJ2_EOZsxdnx90HASmIG97NMTVZth-jpjbNh5JEW9tA8B_3qAbEVq9Nrt_0VzEeorkT-dhi4GCtrMK5r9jhypHZHYx";
 
+// Implementing CORS Anywhere to handle successful redirects.
 const yelp = {
   async search(zipCode) {
     const corsAnywhereUrl = "https://cors-anywhere.herokuapp.com/";
@@ -130,14 +133,14 @@ const yelp = {
       $("#restaurantResults").html(html);
       $("#zipCode").val("");
 
-      // Store the searched zip code in local storage
+      // Store the searched zip code in local storage.
       const previousZipCodes = JSON.parse(localStorage.getItem("previousZipCodes")) || [];
       if (!previousZipCodes.includes(zipCode)) {
         previousZipCodes.push(zipCode);
       }
       localStorage.setItem("previousZipCodes", JSON.stringify(previousZipCodes));
 
-      // Update list of previously searched zip codes
+      // Update list of previously searched zip codes.
       const updatedPreviousZipCodes = JSON.parse(localStorage.getItem("previousZipCodes"));
       const updatedHtml = updatedPreviousZipCodes.map(zipCode => `<li><a href="#" class="previous-zip-code">${zipCode}</a></li>`).join("");
       $("#previousZipCodes").html(updatedHtml);
@@ -148,12 +151,12 @@ const yelp = {
 };
 
 $(document).ready(() => {
-  // Load previously searched zip codes from local storage
+  // Load previously searched zip codes from local storage.
   const previousZipCodes = JSON.parse(localStorage.getItem("previousZipCodes")) || [];
   const html = previousZipCodes.map(zipCode => `<li><a href="#" class="previous-zip-code">${zipCode}</a></li>`).join("");
   $("#previousZipCodes").html(html);
 
-  // Handle click on previously searched zip code link
+  // Handle click on previously searched zip code link.
   $("#previousZipCodes").on("click", ".previous-zip-code", function(e) {
     e.preventDefault();
     const zipCode = $(this).text();

@@ -89,11 +89,15 @@ button[type="submit"] {
   margin-top: 20px;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   text-align: center;
+  background-image: linear-gradient(to left, rgb(97, 98, 98), #e90c5c);
+  border-radius: 5%;
+  cursor: pointer;
 }
 
 #availablePets img {
   border-radius: 50%;
   justify-content: center;
+  cursor: pointer;
 }
 
 #previousSearches,
@@ -121,7 +125,10 @@ button[type="submit"] {
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 5px;
-  background-color: rgb(97, 98, 98);
+  background-image: linear-gradient(to right, rgb(97, 98, 98), #e90c5c);
+  text-align: center;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  cursor: pointer;
 }
 
 #previousZipCodes li {

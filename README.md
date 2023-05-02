@@ -49,6 +49,8 @@ From the right side of the website, the user has the ability to search for pet-f
 
 [Unsplash](https://unsplash.com/photos/aI3EBLvcyu4)
 
+[Font Awesome](https://fontawesome.com/)
+
 
 ## License
 
