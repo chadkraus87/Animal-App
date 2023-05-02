@@ -47,7 +47,7 @@ From the right side of the website, the user has the ability to search for pet-f
 
 [Pure CSS](https://purecss.io/start/)
 
-[Unsplash](https://unsplash.com/photos/aI3EBLvcyu4)
+[Unsplash](https://unsplash.com/photos/aI3EBLvcyu4 , https://unsplash.com/photos/3qZnN_M45Ds)
 
 [Font Awesome](https://fontawesome.com/)
 

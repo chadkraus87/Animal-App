@@ -12,20 +12,45 @@ body {
   border-color: #e90c5c;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   text-align: center;
   color: #fff;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   background-color: #e90c5c;
   display: inline-block;
   box-sizing: border-box;
-  border-radius: 20%;
+  border-radius: 25px;
 }
 
-h1 span, h2 span, h3 span, h4 span {
+h1 span,
+h2 span,
+h3 span,
+h4 span {
   padding: 5px;
   display: inline-block;
 }
+
+.paw-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  background-color: #e90c5c;
+  /* display: inline-block; */
+  box-sizing: border-box;
+  border-radius: 25px;
+  padding: 0px;
+  line-height: 1;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+/* .paw-header h1, .paw-header h3 {
+} */
 
 .box h1 {
   margin-bottom: 0;
@@ -46,7 +71,8 @@ label {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-input[type="text"], select {
+input[type="text"],
+select {
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -89,15 +115,22 @@ button[type="submit"] {
   margin-top: 20px;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   text-align: center;
-  background-image: linear-gradient(to left, rgb(97, 98, 98), #e90c5c);
-  border-radius: 5%;
   cursor: pointer;
 }
 
 #availablePets img {
-  border-radius: 50%;
+  border-radius: 100%;
   justify-content: center;
   cursor: pointer;
+}
+
+.pet-card {
+  margin: 5px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  text-align: center;
+  background: linear-gradient(to left, rgb(97, 98, 98), #e90c5c);
+  cursor: pointer;
+  border-radius: 25px;
 }
 
 #previousSearches,
@@ -144,21 +177,20 @@ button[type="submit"] {
   cursor: pointer;
 }
 
-
 /* Media queries*/
 @media screen and (max-width: 767px) {
   h1 {
     font-size: 48px;
   }
-  
+
   h2 {
     font-size: 32px;
   }
-  
+
   h3 {
     font-size: 24px;
   }
-  
+
   button[type="submit"] {
     font-size: 14px;
   }
@@ -168,15 +200,15 @@ button[type="submit"] {
   h1 {
     font-size: 56px;
   }
-  
+
   h2 {
     font-size: 40px;
   }
-  
+
   h3 {
     font-size: 32px;
   }
-  
+
   button[type="submit"] {
     font-size: 16px;
   }
@@ -186,15 +218,15 @@ button[type="submit"] {
   h1 {
     font-size: 64px;
   }
-  
+
   h2 {
     font-size: 48px;
   }
-  
+
   h3 {
     font-size: 36px;
   }
-  
+
   button[type="submit"] {
     font-size: 18px;
   }

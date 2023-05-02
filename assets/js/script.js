@@ -11,8 +11,9 @@ const pets = {
       const userLocation = $(".currentLocation").val();
       const petType = $("select#petType option:checked").val();
       const petSex = $("select#petSex option:checked").val();
+      const petSize = $("select#petSize option:checked").val();
       console.log("click");
-      pets.petsCall(userLocation, petType, petSex);
+      pets.petsCall(userLocation, petType, petSex, petSize);
       $(".currentLocation").val("");
     });
   },
@@ -37,13 +38,13 @@ const pets = {
     return data.access_token;
   },
 
-  async petsCall(userLocation, petType, petSex) {
-    console.log(userLocation, petType, petSex);
+  async petsCall(userLocation, petType, petSex, petSize) {
+    console.log(userLocation, petType, petSex, petSize);
 
     try {
       const apiToken = await pets.fetchToken();
       const response = await fetch(
-        `${petUrl}?location=${userLocation}&type=${petType}&gender=${petSex}&status=adoptable&limit=10`,
+        `${petUrl}?location=${userLocation}&type=${petType}&gender=${petSex}&size=${petSize}&status=adoptable&limit=10`,
         {
           headers: {
             Authorization: `Bearer ${apiToken}`,
@@ -67,7 +68,7 @@ const pets = {
         const petSpayedNeutered = petResults[i].attributes.spayed_neutered;
         const petPhoto = petResults[i].photos.length
           ? petResults[i].photos[0].medium
-          : "https://via.placeholder.com/300";
+          : "./assets/images/comingsoon300.png";
         const petUrl = petResults[i].url;
 
         console.log(petName);
@@ -77,10 +78,11 @@ const pets = {
         console.log(petBreed);
         console.log(petSpayedNeutered);
         availablePets.append(`
+        <div class="pet-card">
           <a href="${petUrl}" target="_blank">
             <p>Name: ${petName} | Age: ${petAge} | Size: ${petSize} | Breed: ${petBreed} | Spayed/Neutered: ${petSpayedNeutered}</p>
             <div><img src="${petPhoto}"></div>
-          </a>
+          </a></div>
         `);
       }
     } catch (error) {
@@ -94,7 +96,8 @@ $(document).ready(() => {
 });
 
 // Start Yelp API call.
-const YELP_API_KEY = "LqeEnmGplttcwXf6MHGR4LpPvlKsradgguL9zoDJ2_EOZsxdnx90HASmIG97NMTVZth-jpjbNh5JEW9tA8B_3qAbEVq9Nrt_0VzEeorkT-dhi4GCtrMK5r9jhypHZHYx";
+const YELP_API_KEY =
+  "LqeEnmGplttcwXf6MHGR4LpPvlKsradgguL9zoDJ2_EOZsxdnx90HASmIG97NMTVZth-jpjbNh5JEW9tA8B_3qAbEVq9Nrt_0VzEeorkT-dhi4GCtrMK5r9jhypHZHYx";
 
 // Implementing CORS Anywhere to handle successful redirects.
 const yelp = {
@@ -134,15 +137,26 @@ const yelp = {
       $("#zipCode").val("");
 
       // Store the searched zip code in local storage.
-      const previousZipCodes = JSON.parse(localStorage.getItem("previousZipCodes")) || [];
+      const previousZipCodes =
+        JSON.parse(localStorage.getItem("previousZipCodes")) || [];
       if (!previousZipCodes.includes(zipCode)) {
         previousZipCodes.push(zipCode);
       }
-      localStorage.setItem("previousZipCodes", JSON.stringify(previousZipCodes));
+      localStorage.setItem(
+        "previousZipCodes",
+        JSON.stringify(previousZipCodes)
+      );
 
       // Update list of previously searched zip codes.
-      const updatedPreviousZipCodes = JSON.parse(localStorage.getItem("previousZipCodes"));
-      const updatedHtml = updatedPreviousZipCodes.map(zipCode => `<li><a href="#" class="previous-zip-code">${zipCode}</a></li>`).join("");
+      const updatedPreviousZipCodes = JSON.parse(
+        localStorage.getItem("previousZipCodes")
+      );
+      const updatedHtml = updatedPreviousZipCodes
+        .map(
+          (zipCode) =>
+            `<li><a href="#" class="previous-zip-code">${zipCode}</a></li>`
+        )
+        .join("");
       $("#previousZipCodes").html(updatedHtml);
     } catch (error) {
       console.log(error);
@@ -152,12 +166,18 @@ const yelp = {
 
 $(document).ready(() => {
   // Load previously searched zip codes from local storage.
-  const previousZipCodes = JSON.parse(localStorage.getItem("previousZipCodes")) || [];
-  const html = previousZipCodes.map(zipCode => `<li><a href="#" class="previous-zip-code">${zipCode}</a></li>`).join("");
+  const previousZipCodes =
+    JSON.parse(localStorage.getItem("previousZipCodes")) || [];
+  const html = previousZipCodes
+    .map(
+      (zipCode) =>
+        `<li><a href="#" class="previous-zip-code">${zipCode}</a></li>`
+    )
+    .join("");
   $("#previousZipCodes").html(html);
 
   // Handle click on previously searched zip code link.
-  $("#previousZipCodes").on("click", ".previous-zip-code", function(e) {
+  $("#previousZipCodes").on("click", ".previous-zip-code", function (e) {
     e.preventDefault();
     const zipCode = $(this).text();
     yelp.search(zipCode);
