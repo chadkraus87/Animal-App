@@ -7,7 +7,7 @@ Pawsitively Local is a web application designed to help users locate dogs and ca
 
 [Deployed App](https://chadkraus87.github.io/Animal-App)
 
-![Front End Landing Page](assets/images/pawslocalfrontend.png)
+![Front End Landing Page](assets/images/finalfrontend.png)
 
 ## Installation
 
@@ -47,7 +47,9 @@ From the right side of the website, the user has the ability to search for pet-f
 
 [Pure CSS](https://purecss.io/start/)
 
-[Unsplash](https://unsplash.com/photos/aI3EBLvcyu4 , https://unsplash.com/photos/3qZnN_M45Ds)
+[Unsplash](https://unsplash.com/photos/aI3EBLvcyu4)
+
+[Unsplash](https://unsplash.com/photos/3qZnN_M45Ds)
 
 [Font Awesome](https://fontawesome.com/)
 
