@@ -7,7 +7,7 @@ Pawsitively Local is a web application designed to help users locate dogs and ca
 
 [Deployed App](https://chadkraus87.github.io/Animal-App)
 
-![Front End Landing Page](assets/images/finalfrontend.png)
+![Front End Landing Page](assets/images/pawsitivelylocalfrontend.png)
 
 ## Installation
 

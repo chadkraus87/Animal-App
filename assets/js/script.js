@@ -12,8 +12,9 @@ const pets = {
       const petType = $("select#petType option:checked").val();
       const petSex = $("select#petSex option:checked").val();
       const petSize = $("select#petSize option:checked").val();
+      const petAge = $("select#petAge option:checked").val();
       console.log("click");
-      pets.petsCall(userLocation, petType, petSex, petSize);
+      pets.petsCall(userLocation, petType, petSex, petSize, petAge);
       $(".currentLocation").val("");
     });
   },
@@ -38,13 +39,13 @@ const pets = {
     return data.access_token;
   },
 
-  async petsCall(userLocation, petType, petSex, petSize) {
-    console.log(userLocation, petType, petSex, petSize);
+  async petsCall(userLocation, petType, petSex, petSize, petAge) {
+    console.log(userLocation, petType, petSex, petSize, petAge);
 
     try {
       const apiToken = await pets.fetchToken();
       const response = await fetch(
-        `${petUrl}?location=${userLocation}&type=${petType}&gender=${petSex}&size=${petSize}&status=adoptable&limit=10`,
+        `${petUrl}?location=${userLocation}&type=${petType}&gender=${petSex}&size=${petSize}&age=${petAge}&status=adoptable&limit=10`,
         {
           headers: {
             Authorization: `Bearer ${apiToken}`,
